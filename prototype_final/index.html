@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="description" content="The SAP Hall of Frame is a little showcase to demonstrate techniques in the range of HTML5 Game Development and WebGL." />
+<meta name="keywords" content="HTML5, WebGL, Game Development, Javascript, SAP, SAP SCN">
+<title>SAP UI Frameworks</title>
+
+<!--CSS Declarations-->
+<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+<!--////////////////////////////////////////////////-->
+
+<!--Main Page Layout-->
+<body>
+<div id="start-screen" class="row">
+  <div class="container">
+    <h1>WebGL Demo for SAP Community Network</h1>
+  </div>
+  <p id="border"> </p>
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="page-header">
+          <p> This little demo should demonstrate the power and possibilities of WebGL. </p>
+        </div>
+        <div class="page-header">
+          <h2>Controls</h2>
+          <ul>
+            <li> W-A-S-D = Move </li>
+            <li> C = Crouch </li>
+            <li> E = Interact </li>
+            <li> F = Toggle Framerate </li>
+            <li> SPACE = Jump </li>
+            <li> Mouse = Look around </li>
+            <li> Escape = Menu </li>
+          </ul>
+        </div>
+        <div class="page-header">
+          <h2>Source Code</h2>
+          <p> Download the source code from <a href="https://github.com/Neko36/SCN_WEBGL" target="_blank">github</a>. </p>
+        </div>
+        <div class="page-header">
+          <h2>Blog post</h2>
+          <p> Visit the official blog post on <a href="http://scn.sap.com/community/developer-center/front-end/blog/2013/08/17/interactive-3d-graphics-with-threejs-webgl" target="_blank">SCN</a>. </p>
+        </div>
+        <div class="page-header">
+          <div class="progress progress-striped active">
+            <div class="bar" style="width: 0%;"></div>
+          </div>
+          <div id="loadingStatus"> <span class="loading-message">Loading...</span> <span id="btn-start"> <a class="btn btn-primary btn-large">Play</a></span> </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <p> Built by <a href="http://scn.sap.com/people/michaelherzog" target="_blank">Michael Herzog</a> for <a href="http://scn.sap.com/welcome" target="_blank">SAP Community Network</a>. </p>
+    </div>
+  </footer>
+</div>
+<!--////////////////////////////////////////////////--> 
+
+<!--Container for 3D Environment-->
+<div id="container"></div>
+<!--////////////////////////////////////////////////--> 
+
+<!--Enables the Crosshair-->
+<div id="crosshair">
+  <div class="icon"></div>
+  <!--////////////////////////////////////////////////--> 
+  
+  <!--Enables the Tooltip--> 
+  <span id="interact-label" class="label label-info"> </span> </div>
+<!--////////////////////////////////////////////////--> 
+
+<!--Tooltip Info for the four monitors goes here-->
+<div id="monitor_1" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"> &times; </button>
+    <h3>Web Dynpro</h3>
+  </div>
+  <div class="modal-body">
+    <p> Web Dynpro for ABAP or Web Dynpro for ABAP (WD4A, WDA) is the SAP standard UI technology for developing Web applications in the ABAP environment. It consists of a runtime environment and a graphical development environment with special Web Dynpro tools that are integrated in the ABAP Workbench (SE80). Web Dynpro offers the following advantages for application developers: </p>
+    <ul>
+      <li> The use of declarative and graphical tools significantly reduces the implementation effort. </li>
+      <li> Web Dynpro supports a structured design process. </li>
+      <li> Strict separation between layout and business data. </li>
+      <li> Reuse and better maintainability by using components. </li>
+      <li> The layout and navigation is easily changed using the Web Dynpro tools. </li>
+      <li> Stateful applications are supported – that is, if the page is changed and the required data remains intact so that you can access it at any time throughout the entire application context. <br />
+        <span class="label label-info">Heads up!</span> Stateless applications are not possible. </li>
+      <li> Automatic data transport using data binding. </li>
+      <li> Automatic input check. </li>
+      <li> User interface accessibility is supported. </li>
+      <li> Full integration in the reliable ABAP development environment. </li>
+    </ul>
+    <p> Text from <a href="http://help.sap.com/saphelp_scm700_ehp02_hana/helpdata/en/77/3545415ea6f523e10000000a155106/content.htm" target="_blank">SAP Help Portal</a>. </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-stop" data-dismiss="modal"> Close </button>
+  </div>
+</div>
+<div id="monitor_2" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"> &times; </button>
+    <h3>SAPUI5</h3>
+  </div>
+  <div class="modal-body">
+    <p> The UI development toolkit for HTML5 (SAPUI5) is a user interface technology that is used to build and adapt client applications. The SAPUI5 runtime is a client-side HTML5 rendering library with a rich set of standard and extension controls and a lightweight programming model. The client-side rendering library provides a rich set of controls. You can extend these controls as well as develop new custom controls. SAPUI5 provides many features to enable you to easily create and extend state-of-the-art user interfaces: </p>
+    <ul>
+      <li> It supports RIA like client-side features based on JavaScript. </li>
+      <li> It supports CSS3, which allows you to adapt themes to your company's branding in an effective manner. </li>
+      <li> It is based on an extensibility concept regarding custom controls. </li>
+      <li> It uses the open source jQuery library as a foundation. </li>
+      <li> It fully supports SAP product standards.. </li>
+      <li> It complies with OpenAjax and can be used together with standard JavaScript libraries. </li>
+      <li> It is produced in a release independent code line to enable short shipment cycles. </li>
+    </ul>
+    <p> Text from <a href="http://help.sap.com/saphelp_nw73ehp1/helpdata/en/E2/BC731AB39B4057A6FCEE46CCB64034/content.htm" target="_blank">SAP Help Portal</a>. </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-stop" data-dismiss="modal"> Close </button>
+  </div>
+</div>
+<div id="monitor_3" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"> &times; </button>
+    <h3>Floorplan Manager</h3>
+  </div>
+  <div class="modal-body">
+    <p> Floorplan Manager is a framework that you can use to create and configure Web Dynpro applications in Web Dynpro ABAP. You can use the Floorplan Manager configuration editor to combine application-specific views of one or more business applications to a new Floorplan Manager application. Floorplan Manager gives you the following advantages: </p>
+    <ul>
+      <li> The design of all cross-application components of a user interface is defined by the Floorplan Manager. </li>
+      <li> The design follows the SAP user interface design guidelines. </li>
+      <li> Users of such applications benefit from a high level of recognition, which enables them to quickly and easily familiarize themselves with new applications. </li>
+      <li> The integration of design templates such as floorplans and generic user interface building blocks into Floorplan Manager accelerates the creation of user interfaces and also ensures that the user interfaces behave the same way in all applications. </li>
+      <li> Time-consuming user interface programming is greatly reduced for application programming. </li>
+      <li> Simple applications are adjusted by configuring the underlying Web Dynpro components and not by additional programming. </li>
+      <li> Adjustments that you make to the user interfaces of applications using the Floorplan Manager configuration editor are modification-free changes. </li>
+      <li> Floorplan Manager uses the Web Dynpro adjustment concept. </li>
+    </ul>
+    <p> Text from <a href="http://help.sap.com/saphelp_nw70ehp1/helpdata/en/9f/95467bbefc4a808fffeba4c5177258/content.htm" target="_blank">SAP Help Portal</a>. </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-stop" data-dismiss="modal"> Close </button>
+  </div>
+</div>
+<div id="monitor_4" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"> &times; </button>
+    <h3>CRM WebClient UI</h3>
+  </div>
+  <div class="modal-body">
+    <p> With the CRM WebClient UI, SAP AG delivers a harmonized online user interface. The WebClient UI is designed for the business user and presents a role-based workspace that provides an easy-to-use navigation and user interface. </p>
+    <p> The framework architecture of SAP CRM is based on different software layers. The different software layers are completely separated from each other. This separation allows the connection of any business application, via business object layer (BOL) and generic interaction layer (genIL) to the presentation layer. </p>
+    <p> Text from <a href="http://en.wikipedia.org/wiki/CRM_WebClient_UI" target="_blank">Wikipedia</a>. </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-stop" data-dismiss="modal"> Close </button>
+  </div>
+  
+  <!--////////////////////////////////////////////////--> 
+</div>
+
+<!--JS Declarations-->
+<script type="text/javascript" charset="utf-8" src="libs/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="libs/three.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="libs/stats.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/config.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/controls.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/ui.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/lights.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/sky.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/loader.js"></script>
+<!--////////////////////////////////////////////////-->
+
+<!-- Call the "Engine" Functions -->
+<script type="text/javascript">
+			$(document).ready(function() {
+				zephyr.system.runEngine();
+			});
+		</script>
+<!--////////////////////////////////////////////////-->
+
+</body>
+
+
+
+</html>

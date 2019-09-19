@@ -1,0 +1,57 @@
+body {
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+	margin: 0;
+	overflow: hidden;
+	font-family: arial;
+}
+#interact-label {
+	display: none;
+}
+#crosshair {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	display: none;
+}
+#crosshair .icon {
+	width: 5px;
+	height: 5px;
+	border-radius: 66px;
+	border: 2px double #ccc;
+	opacity: 0.7
+}
+#browser-check {
+	display: none;
+}
+#start-screen {
+	position: absolute;
+	z-index: 2;
+	width: 102%;
+	height: 100%;
+	top: 0;
+	background-color: #ffffff;
+	overflow: auto;
+}
+#loadingStatus{
+	float: right;
+}
+#btn-start{
+	display: none;
+}
+#stats{
+	display: none;
+}
+#border{
+	background-color: #008fd3;
+	width: 100%;
+	height: 10px;
+}
+footer {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 70px;
+	border-top: 1px solid #e5e5e5;
+	background-color: #f5f5f5;
+}
